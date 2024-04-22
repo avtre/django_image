@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Загрузка изображения</title>
+</head>
+<body>
+<div class="row">
+<div class="col-lg-4"></div>
+<div class="col-lg-8">
+    <h2>Список загруженных изображений</h2>
+    <script>console.log(`{{ image }}`)</script>
+    <div>
+    {% for img in image %}
+        <div>
+            <h5><a href="/photo_detail/?photo_id={{ img.id }}">{{img.id}} : {{ img.image.name }}</a></h5>
+        </div>
+    {% endfor %}
+    </div>
+
+    <h2>Загрузить изображение</h2>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="input-group">
+            <button class="btn btn-outline-secondary"><label for="id_image">Выбрать изображение</label></button>
+            <span class="btn btn-default btn-file">
+                <input type="file" class="form-control" name="image" accept="image/*" required="" id="id_image" hidden>
+            </span>
+            <button class="btn btn-outline-secondary" type="submit">Загрузить</button>
+        </div>
+    </form>
+</div>
+</div>
+</body>
+</html>
